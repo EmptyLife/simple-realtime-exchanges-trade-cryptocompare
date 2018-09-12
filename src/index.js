@@ -60,10 +60,6 @@ class ExchangeTrade {
 	
 	_addTrade(symbolFrom, symbolTo, price, quantity, timestamp_sv, timestamp_cl) {
 		const symbol = `${symbolFrom}/${symbolTo}`;
-		console.log({
-			symbol,
-			price, quantity, timestamp_sv, timestamp_cl
-		});
 		
 		this.open();
 		
@@ -159,9 +155,7 @@ class ExchangesRealtime extends EventEmitter {
 			}
 		});
 
-		["connect", "disconnect"].forEach(e => {
-			this.socket.on(e, (...args) => console.log(e, args));
-		});
+		//["connect", "disconnect"].forEach(e => {this.socket.on(e, (...args) => console.log(e, args));});
 		
 		this.socket.on("m", (message) => {
 			if ( typeof message === "string" &&
@@ -173,8 +167,6 @@ class ExchangesRealtime extends EventEmitter {
 				}
 			}
 		});
-		
-		console.log(subs)
 	}
 	
 	_parseTradeObject(obj) {
